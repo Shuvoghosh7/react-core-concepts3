@@ -40,30 +40,34 @@ function Counter(){
 }
 
 function ExternamUser(){
-  const[user,setUser]=useState()
-  useEffect(()=>{
-    fetch("https://jsonplaceholder.typicode.com/comments")
-    .then(res =>res.json())
-    .then(data => setUser(data))
+  const [users,setUsers]=useState([])
+  useEffect( ()=>{ 
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data =>setUsers(data))
   },[])
   return (
     <div>
-      <h1>ExternamUser</h1>
-      <p>{user.length}</p>
+      <h1>External User</h1>
+      <p>{users.length}</p>
       {
-        user.map(use =>)
+        users.map(user => <User Name={user.name} Email={user.email}></User>)
       }
     </div>
   )
 }
 
 function User(props){
-  return(
-    <div>
-      
+  return (
+    <div style={{broder:'2px solid red'}}>
+      <h3>Name:{props.Name}</h3>
+      <p>Email:{props.Email}</p>
     </div>
   )
 }
+
+
+
 
 export default App;
 
